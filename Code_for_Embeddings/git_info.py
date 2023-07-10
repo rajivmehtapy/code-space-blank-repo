@@ -4,7 +4,7 @@ import requests
 import json
 from github import Github
 from github import Auth
-duckdb.default_connection.execute("SET GLOBAL pandas_analyze_sample=100000")
+# duckdb.default_connection.execute("SET GLOBAL pandas_analyze_sample=100000")
 
 # !pip install PyGithub
 # !pip install -U github-dependents-info
@@ -147,7 +147,7 @@ def get_Repo_Count_For_A_Tools_Version_wise(tool_id):
         where 
             tool_id = {tool_id}
         """ 
-        return [{'version':item.number , 'no':item.no_of_stacks}for inx,item in sql_helper(sql).iterrows()]
+        return [{'version':str(item.number) , 'no':str(item.no_of_stacks)}for inx,item in sql_helper(sql).iterrows()]
     except Exception as ex:
         print(f'Data --> {ex}')
 
