@@ -2,19 +2,22 @@ from bertopic import BERTopic
 import numpy as np
 import pandas as pd
 import plotly.express as px  # Reference: https://plotly.com/python/radar-chart/  [[7]]
+from umap import UMAP
+from datasets import load_dataset
 
-# Sample documents
-docs = [
-    "I love machine learning and data science",
-    "Deep learning is fascinating and powerful",
-    "Natural language processing opens up many possibilities",
-    "Data visualization helps in understanding complex models",
-    "Python libraries like scikit-learn and Hugging Face are great"
-]
+# Load dataset from Hugging Face Hub
+dataset = load_dataset("rajivmehtapy/md_highland_ds")
+# Extract documents from the 'train' split - adjust split/column name as needed
+docs = dataset["train"]["text"]  # Assuming 'text' is the column name
 
 # Step 1: Fit BERTopic model with calculate_probabilities=True
 topic_model = BERTopic(calculate_probabilities=True)
+# topic_model = BERTopic(
+#     umap_model=UMAP(n_components=2, random_state=42)
+# )
 topics, probs = topic_model.fit_transform(docs)
+
+
 
 # Step 2: Compute average topic probabilities across documents
 avg_probs = np.mean(probs, axis=0)
@@ -52,3 +55,6 @@ print("Radar chart saved as 'radar_chart_plotly.png'")
 # fig.update_traces(fill = 'toself')
 
 # fig.write_image("g_radar.png")
+
+
+# Modify BERTopic initialization with custom UMAP parameters
