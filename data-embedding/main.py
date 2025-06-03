@@ -10,7 +10,7 @@ from datasets import load_dataset
 import openai
 from bertopic.representation import OpenAI
 import os
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "<KEY>"
 # Load dataset from Hugging Face Hub
 dataset = load_dataset("rajivmehtapy/md_highland_ds")
 # Extract documents from the 'train' split - adjust split/column name as needed
