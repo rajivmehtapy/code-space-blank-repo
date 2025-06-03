@@ -1,3 +1,5 @@
 pandas
 plotly
 kaleido<0.2.1  # Use previous version with x86_64 support
+datasets
+huggingface_hub
